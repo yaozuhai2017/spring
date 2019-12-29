@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--将user对象交给spring容器管理 class全类名-->
+    <bean name="user" class="com.ujiuye.pojo.User">
+    </bean>
+    <!--set方法注入-->
+    <bean name="boy" class="com.ujiuye.pojo.Boy" >
+        <property name="name" value="胖胖"/>
+        <property name="age" value="22"/>
+        <property name="girl" ref="girl"/>
+      <!-- &lt;!&ndash; <property name="girl">
+            <ref bean="girl"/>&ndash;&gt;
+        </property>-->
+
+    </bean>
+   <!-- 构造函数注入-->
+    <bean name="girl" class="com.ujiuye.pojo.Girl">
+        <constructor-arg name="name" value="xixi"/>
+        <constructor-arg name="age" value="21"/>
+    </bean>
+<bean name="arr" class="com.ujiuye.pojo.CollectionBean" id="col">
+    <property name="arr">
+        <array>
+            <value>xiaoqian</value>
+            <value>18</value>
+            <value>girl</value>
+        </array>
+    </property>
+    <property name="list">
+        <list>
+            <value>yanglei</value>
+            <value>23</value>
+        </list>
+    </property>
+    <property name="map">
+        <map>
+            <entry key="name" value="小李"></entry>
+            <entry key="age" value="40"></entry>
+            <entry key="sex" value="man"></entry>
+        </map>
+    </property>
+    <property name="properties">
+        <props>
+            <prop key="name">刘欢</prop>
+            <prop key="sex">gay</prop>
+            <prop key="age">24</prop>
+        </props>
+    </property>
+</bean>
+<bean class="com.ujiuye.controller.UserController" id="controller" >
+    <property name="userService" ref="userService"/>
+</bean>
+    <bean class="com.ujiuye.Userservice.UserServiceImpl" id="userService">
+
+    </bean>
+</beans>
